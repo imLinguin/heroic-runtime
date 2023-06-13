@@ -2,7 +2,7 @@ properties:
   name: heroic-runtime
   version: 0.0.1
   description: Runtime created to ensure compatibility with Linux native games
-  author: Paweł Lidwin
+  author: imLinguin 
   license: MIT
   url: https://github.com/imLinguin
 

@@ -8,6 +8,15 @@ jobs:
             env:
                 LANG: C.UTF-8
         steps:
+            - name: Enable i386 arch
+              run: dpkg --add-architecture i386
+
+            - name: Update repository
+              run: apt-get -qq update
+
+            - name: Install python
+              run: apt-get install python3 python3-pip git -y
+
             - name: Checkout this repository.
               uses: actions/checkout@v3
               with:
@@ -18,14 +27,6 @@ jobs:
                 repository: mirkobrombin/runtimezilla
                 ref: 0.1
                 path: runtimezilla 
-            - name: Enable i386 arch
-              run: dpkg --add-architecture i386
-
-            - name: Update repository
-              run: apt-get -qq update
-
-            - name: Install python
-              run: apt-get install python3 python3-pip -y
 
             - name: Install python deps
               run: python3 -m pip install -r runtimezilla/requirements.txt
@@ -34,7 +35,8 @@ jobs:
               env: 
                 PYTHONUTF8: 1
                 PYTHONIOENCODING: UTF-8
-              run: python3 runtimezilla/runtimezilla --recipe ./main/recipe.yml --output ./runtime
+              working-directory: runtimezilla
+              run: python3 runtimezilla --recipe ../main/recipe.yml --output ../runtime
 
             - name: Compress runtime
               run: tar -czvf runtime.tar.gz runtime
