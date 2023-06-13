@@ -15,17 +15,17 @@ jobs:
                 repository: mirkobrombin/runtimezilla
                 ref: 0.1
                 path: runtimezilla 
-            - name: Setup Python 
-              uses: actions/setup-python@v4 
-
-            - name: Install python deps
-              run: python3 -m pip install -r runtimezilla/requirements.txt
-
             - name: Enable i386 arch
               run: dpkg --add-architecture i386
 
             - name: Update repository
               run: apt-get -qq update
+
+            - name: Install python
+              run: apt-get install python3 python3-pip -y
+
+            - name: Install python deps
+              run: python3 -m pip install -r runtimezilla/requirements.txt
 
             - name: Build runtime
               run: python3 runtimezilla/runtimezilla --recipe ./main/recipe.yml --output ./runtime
