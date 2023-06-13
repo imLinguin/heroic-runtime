@@ -1,0 +1,24 @@
+properties:
+  name: heroic-runtime
+  version: 0.0.1
+  description: Runtime created to ensure compatibility with Linux native games
+  author: Paweł Lidwin
+  license: MIT
+  url: https://github.com/imLinguin
+
+packager: APT
+
+system:
+  name: Ubuntu
+  min_version: 18.04
+  max_version: 18.04
+
+ingredients:
+  - files:
+    - libbsd.so.0
+    package: libbsd0 libbsd0:i386
+
+  - files:
+    - libssl.so.1.0.0
+    package: 
+  
