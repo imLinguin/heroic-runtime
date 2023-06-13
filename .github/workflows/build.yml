@@ -3,7 +3,10 @@ on: workflow_dispatch
 jobs:
     build:
         runs-on: ubuntu-latest
-        container: ubuntu:18.04
+        container:
+            image: ubuntu:18.04
+            env:
+                LANG: C.UTF-8
         steps:
             - name: Checkout this repository.
               uses: actions/checkout@v3
@@ -28,6 +31,9 @@ jobs:
               run: python3 -m pip install -r runtimezilla/requirements.txt
 
             - name: Build runtime
+              env: 
+                PYTHONUTF8: 1
+                PYTHONIOENCODING: UTF-8
               run: python3 runtimezilla/runtimezilla --recipe ./main/recipe.yml --output ./runtime
 
             - name: Compress runtime
