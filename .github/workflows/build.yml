@@ -1,5 +1,9 @@
 name: Build the runtime
-on: workflow_dispatch
+on: 
+  push:
+    branches: main
+    tags:
+      - 'v*'
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -45,10 +49,19 @@ jobs:
               run: tar -czvf runtime.tar.gz runtime
 
             - name: Upload runtime
+              if: github.ref_type == 'branch'
               uses: actions/upload-artifact@v3
               with:
                 name: runtime
                 path: runtime.tar.gz
-
+    
+            - name: Publish release
+              if: github.ref_type == 'tag'
+              uses: marvinpinto/action-automatic-releases@latest
+              with:
+                repo_token: "${{secrets.GITHUB_TOKEN}}"
+                prerelease: false
+                draft: false
+                files: runtime.tar.gz
 
 

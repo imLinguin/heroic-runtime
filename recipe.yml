@@ -77,7 +77,7 @@ ingredients:
 
   - files:
     - libgomp.so.1
-    package: libgomp1-i386-cross libgomp1-i386-cross:i386
+    package: libgomp1 libgomp1:i386
 
   - files:
     - libaudio.so.2
