@@ -38,6 +38,9 @@ jobs:
               working-directory: runtimezilla
               run: python3 runtimezilla --recipe ../main/recipe.yml --output ../runtime
 
+            - name: Prepare runtime
+              run: main/prepare.sh 
+
             - name: Compress runtime
               run: tar -czvf runtime.tar.gz runtime
 
