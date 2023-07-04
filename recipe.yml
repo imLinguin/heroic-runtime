@@ -15,10 +15,6 @@ system:
 
 ingredients:
   - files:
-    - libbsd.so.0
-    package: libbsd0 libbsd0:i386
-
-  - files:
     - libssl.so.1.0.0
     package: libssl1.0.0 libssl1.0.0:i386
 
