@@ -16,6 +16,7 @@ system:
 ingredients:
   - files:
     - libssl.so.1.0.0
+    - libcrypto.so.1.0.0
     package: libssl1.0.0 libssl1.0.0:i386
 
   - files:
